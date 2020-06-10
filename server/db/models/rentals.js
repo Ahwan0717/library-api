@@ -8,7 +8,7 @@ const Rental = db.define('rental', {
     allowNull: false,
   },
   status: {
-    type: Sequelize.ENUM('Checked Out', 'Returned'),
+    type: Sequelize.ENUM('Checked Out', 'Overdue', 'Returned'),
     defaultValue: 'Checked Out',
     allowNull: false,
   },

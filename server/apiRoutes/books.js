@@ -4,6 +4,20 @@ module.exports = router
 
 // Librarian Endpoints //
 
+router.get('/:bookId', async (req, res, next) => {
+  try {
+    const singleBook = await Book.findOne({
+      where: {
+        id: req.params.bookId
+      }
+    })
+    res.json(singleBook)
+  } catch (err) {
+    next(err)
+  }
+})
+
+
 router.get('/', async (req, res, next) => {
   try {
     const books = await Book.findAll()
@@ -15,6 +29,8 @@ router.get('/', async (req, res, next) => {
 })
 
 // 	An endpoint to add a book (by ISBN) to the library.
+//how do i add by ISBN? should i just change validations and create a book just solely off ISBN?
+
 router.post('/', async (req, res, next) => {
   try {
     const newBook = await Book.create({
@@ -24,6 +40,20 @@ router.post('/', async (req, res, next) => {
       inventory: req.body.inventory
     })
     res.json(newBook);
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
+// An endpoint to remove a book (by its internal Id) from the library
+
+router.delete('/:bookId', async (req, res, next) => {
+  try {
+    const book = await Book.findByPk(req.params.bookId)
+    if (!book) return res.sendStatus(404)
+    await book.destroy()
+    res.json(book)
   }
   catch (err) {
     next(err)
