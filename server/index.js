@@ -1,3 +1,4 @@
+// const path = require('path')
 const express = require('express');
 const morgan = require('morgan');
 const db = require('./db')
@@ -12,9 +13,10 @@ const createApp = () => {
 
   // body parsing middleware
   app.use(express.json())
-  app.use(express.urlencoded({extended: true}))
+  app.use(express.urlencoded({ extended: true }))
 
   app.use('/api', require('./apiRoutes'))
+
 
   // error handling endware
   app.use((err, req, res, next) => {
@@ -30,7 +32,10 @@ const startListening = () => {
   });
 }
 
-const syncDb = () => db.sync()
+const syncDb = async () => await db.sync({
+  force: true
+})
+
 
 async function bootApp() {
   await syncDb()

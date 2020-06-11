@@ -30,11 +30,11 @@ router.get('/', async (req, res, next) => {
         where: {
           status: 'Over due'
         },
-        // include: [
-        //   {
-        //     model: Book
-        //   }
-        // ]
+        include: [
+          {
+            model: Book
+          }
+        ]
       }
     )
     res.json(overdueBooks)
@@ -65,7 +65,5 @@ router.put('/:rentalId', async (req, res, next) => {
 // router.get('/:userId/:rentalId', async (req, res, next) => {
 
 // })
-
-
 
 //Check out a book. POST? to create a rental checkout. Can only check out any book except when they have 3 checked out books. They are overdue on returning any book.
