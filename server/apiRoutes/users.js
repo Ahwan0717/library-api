@@ -1,11 +1,10 @@
 const router = require('express').Router()
-const User = require('../db/models/users')
+const { User } = require('../db/models')
 module.exports = router
 
 
 //test route//
 
-/*
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll()
@@ -15,7 +14,7 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
-*/
+
 
 
 //USER ENDPOINTS//

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Book = require('../db/models/books')
+const { Book, Rental } = require('../db/models')
 module.exports = router
 
 // Librarian Endpoints //
@@ -17,7 +17,6 @@ router.get('/:bookId', async (req, res, next) => {
   }
 })
 
-
 router.get('/', async (req, res, next) => {
   try {
     const books = await Book.findAll()
@@ -29,7 +28,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // 	An endpoint to add a book (by ISBN) to the library.
-//how do i add by ISBN? should i just change validations and create a book just solely off ISBN?
+//need to update
 
 router.post('/', async (req, res, next) => {
   try {
