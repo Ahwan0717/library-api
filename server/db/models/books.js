@@ -25,12 +25,10 @@ const Book = db.define('book', {
   },
   inventory: {
     type: Sequelize.INTEGER,
-    defaultValue: 3,
-    allowNull: false,
     validate: {
       notEmpty: true
     }
-  }
+  },
 })
 
 module.exports = Book

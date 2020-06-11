@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User } = require('../db/models')
+const { User, Rental } = require('../db/models')
 module.exports = router
 
 
@@ -17,15 +17,6 @@ router.get('/', async (req, res, next) => {
 
 
 
-//USER ENDPOINTS//
-
-//Check out a book. POST? to create a rental checkout. Can only check out any book except when they have 3 checked out books. They are overdue on returning any book.
-
-
-//Return a checked out book. PUT.
-
-
-//Returns all currently chcked out books. PUT.
 
 
 

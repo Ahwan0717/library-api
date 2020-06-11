@@ -3,17 +3,12 @@ const Rental = require('./rentals')
 const User = require('./users')
 const BookRental = require('./bookRentals')
 
-// User.hasMany(Rental)
-// Rental.belongsTo(User)
+Rental.hasOne(User)
+User.belongsTo(Rental)
 
-// Book.belongsTo(Rental)
-// Rental.hasMany(Book)
+Rental.hasMany(Book)
+Book.belongsTo(Rental)
 
-// Rental.belongsTo(User, { through: BookRental })
-// Book.belongsTo(Rental, { through: BookRental })
-
-User.hasMany(Rental)
-Rental.belongsTo(User)
 Rental.belongsToMany(Book, { through: BookRental })
 Book.belongsToMany(Rental, { through: BookRental })
 

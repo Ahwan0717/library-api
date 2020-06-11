@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Rental = db.define('rental', {
-  date: {
+  startDate: {
     type: Sequelize.DATE,
     defaultValue: Sequelize.NOW,
     allowNull: false,
@@ -11,6 +11,12 @@ const Rental = db.define('rental', {
     type: Sequelize.ENUM('Checked Out', 'Over due', 'Returned'),
     defaultValue: 'Checked Out',
     allowNull: false,
+  },
+  bookQuantity: {
+    type: Sequelize.INTEGER,
+    min: 1,
+    max: 3,
+    allowNull: false
   },
 })
 
