@@ -4,8 +4,8 @@ const User = require('./users')
 const BookRental = require('./bookRentals')
 const db = require('../db')
 
-Rental.hasOne(User)
-User.belongsTo(Rental)
+User.hasOne(Rental)
+Rental.belongsTo(User)
 
 Rental.hasMany(Book)
 Book.belongsTo(Rental)

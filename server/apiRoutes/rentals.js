@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Rental, Book } = require('../db/models')
+const { Rental, Book, User } = require('../db/models')
 module.exports = router
 
 
@@ -9,11 +9,11 @@ router.get('/:rentalId', async (req, res, next) => {
       where: {
         status: 'Checked Out'
       },
-      // include: [
-      //   {
-      //     model: Book
-      //   }
-      // ]
+      include: [
+        {
+          model: Book
+        }
+      ]
     })
     res.json(singleRental)
   } catch (err) {
@@ -62,8 +62,32 @@ router.put('/:rentalId', async (req, res, next) => {
 
 // An endpoint that returns all currently checked out books for that user.
 
-// router.get('/:userId/:rentalId', async (req, res, next) => {
+//should i use bookrentals for this?
 
+// i need rentalId and userId
+
+// router.put('/:rentalId/:userId', async (req, res, next) => {
+//   try {
+//     const rentalUpdate = await Rental.findByPk(req.params.rentalId)
+//     // if (!rentalUpdate) return res.sendStatus(404)
+//     const updatedUserRental = await Rental.findOne({
+//       where: {
+//         rentalId: rentalUpdate,
+//         userId: req.params.userId
+//       }
+//     })
+//     if (updatedUserRental) {
+//       await updatedUserRental.update({
+//         startDate: req.body.startDate,
+//         status: 'Returned',
+//         bookQuantity: req.body.bookQuantity
+//       })
+//     }
+//     res.json(updatedUserRental)
+//   } catch (err) {
+//     next(err)
+//   }
 // })
 
-//Check out a book. POST? to create a rental checkout. Can only check out any book except when they have 3 checked out books. They are overdue on returning any book.
+
+//Check out a book. PUT/POST to create a rental checkout. Can only check out any book except when they have 3 checked out books. They are overdue on returning any book.
